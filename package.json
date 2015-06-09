@@ -4,7 +4,7 @@
   "description": "Easily inject angular dependencies in mocha and jasmine tests",
   "main": "index.js",
   "scripts": {
-    "test": "karma start karma-mocha.conf.js && karma start karma-jasmine.conf.js",
+    "test": "KARMA_FRAMEWORK=mocha karma start karma.conf.js && KARMA_FRAMEWORK=jasmine karma start karma.conf.js",
     "build": "browserify index.js --standalone easyInject -o dist/easy-inject.js"
   },
   "author": "Nick Tomlin <nick.tomlin@gmail.com>",

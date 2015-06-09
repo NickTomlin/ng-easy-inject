@@ -2,13 +2,16 @@
 
 var merge = require('lodash.merge');
 var isArray = require('lodash.isarray');
+var FRAMEWORK = process.env.KARMA_FRAMEWORK || 'mocha';
 
-module.exports = function(karmaConfig, overrides) {
+module.exports = function(config, overrides) {
+  console.log('Running karma specs with', FRAMEWORK);
+
   var defaults = {
 
     basePath: '',
 
-    frameworks: ['browserify', 'phantomjs-shim'],
+    frameworks: ['browserify', 'phantomjs-shim', FRAMEWORK],
 
     preprocessors: {
       'test/**/*.js': [ 'browserify' ]
@@ -29,7 +32,7 @@ module.exports = function(karmaConfig, overrides) {
 
     colors: true,
 
-    logLevel: karmaConfig.LOG_INFO,
+    logLevel: config.LOG_INFO,
 
     autoWatch: false,
 
@@ -38,7 +41,11 @@ module.exports = function(karmaConfig, overrides) {
     singleRun: true
   };
 
-  return merge(defaults, overrides, function (a, b) {
-    return isArray(a) ? a.concat(b) : undefined;
-  });
+  if (overrides) {
+    return merge(defaults, overrides, function (a, b) {
+      return isArray(a) ? a.concat(b) : undefined;
+    });
+  } else {
+    config.set(defaults);
+  }
 };
