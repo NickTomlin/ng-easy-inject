@@ -6,6 +6,7 @@ Easily inject angular dependencies into your unit tests.
 
 ```javascript
 // or window.easyInject for non CJS users
+// who include a <script> pointed at dist/ng-easy-inject.js
 var easyInject = require('ng-easy-inject');
 
 describe('injecting depedencies', function () {
