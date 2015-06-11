@@ -8,7 +8,7 @@
  *
  * or
  *
- * beforeEach(eashyInject('http $q', function ($http, $q) {
+ * beforeEach(easyInject('http $q', function ($http, $q) {
  *   this.deferred = $q.defer();
  * }))
  *
