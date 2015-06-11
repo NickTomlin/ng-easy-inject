@@ -1,6 +1,9 @@
 ng-easy-inject
 ---
 
+[![Build Status](http://img.shields.io/travis/NickTomlin/ng-easy-inject.svg?style=flat&branch=master)](https://travis-ci.org/NickTomlin/ng-easy-inject)
+![NPM package](https://img.shields.io/npm/v/ng-easy-inject.svg)
+
 Easily inject angular dependencies into your unit tests.
 
 
