@@ -27,3 +27,7 @@ Tested against mocha and Jasmine 2.x.
 npm i
 npm t
 ```
+
+# Related Projects
+
+[bard.js](https://github.com/wardbell/bardjs) - Includes auto inject functionality and a lot of other useful helpers.
