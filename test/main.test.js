@@ -8,8 +8,8 @@ describe('ng-easy-inject', function () {
     beforeEach(easyInject('$http $q'));
 
     it('adds injected modules to current context (this)', function () {
-        assert(this.$http.get);
-        assert(this.$q.defer);
+      assert(this.$http.get);
+      assert(this.$q.defer);
     });
 
     describe('nested', function () {
@@ -29,7 +29,7 @@ describe('ng-easy-inject', function () {
     beforeEach(easyInject('$http $q', function ($http, $q) {
       called = [$http, $q];
     }));
-    afterEach(function () { called = undefined; });
+    afterEach(function () { called = undefined; }); // eslint-disable-line no-undefined
 
     it('invokes callback with injected arguments', function () {
       assert.equal(called.length, 2);

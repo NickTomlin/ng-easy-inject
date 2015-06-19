@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 'use strict';
 
 var merge = require('lodash.merge');
@@ -43,7 +44,7 @@ module.exports = function(config, overrides) {
 
   if (overrides) {
     return merge(defaults, overrides, function (a, b) {
-      return isArray(a) ? a.concat(b) : undefined;
+      return isArray(a) ? a.concat(b) : undefined; // eslint-disable-line no-undefined
     });
   } else {
     config.set(defaults);

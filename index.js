@@ -14,17 +14,18 @@
  *
  * @param {String} toInject - Space delimited list of items to inject
  * @param {Function=} callback - Callback to be invoked injected items as params
+ * @returns undefined
  */
 module.exports = function (toInject, callback) {
   var injectables = toInject.split(' ');
 
-  function fnToInject (_ /* angular checks for fn.length, so we must provide a useless arg */) {
+  // angular checks for fn.length, so we must provide a useless _ arg
+  function fnToInject (_) { // eslint-disable-line no-unused-vars
     var testContext = this;
     var injected = Array.prototype.slice.call(arguments, 0);
 
     angular.forEach(injected, function (item, index) {
       var name = fnToInject.$inject[index];
-      var item = item;
       testContext[name] = item;
       if (callback) {
         callback.apply(testContext, injected);
@@ -33,10 +34,10 @@ module.exports = function (toInject, callback) {
   }
 
   fnToInject.toString = function () {
-     return 'function (' + injectables.join(', ') + ') { \n void 0;\n }';
+    return 'function (' + injectables.join(', ') + ') { \n void 0;\n }';
   };
 
   return function mochaInject () {
     global.angular.mock.inject.call(this, fnToInject);
   };
-}
+};
