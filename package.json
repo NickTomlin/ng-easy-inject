@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "npm run lint && KARMA_FRAMEWORK=mocha karma start karma.conf.js && KARMA_FRAMEWORK=jasmine karma start karma.conf.js",
+    "test:watch": "karma start karma.conf.js --auto-watch --single-run=false",
     "lint": "eslint .",
     "build": "browserify index.js --standalone easyInject -o dist/ng-easy-inject.js"
   },
