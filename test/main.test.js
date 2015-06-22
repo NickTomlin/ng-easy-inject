@@ -2,6 +2,7 @@
 
 var easyInject = require('../');
 var assert = require('assert');
+var sinon = require('sinon');
 
 describe('ng-easy-inject', function () {
   describe('autoinjection', function () {
@@ -24,17 +25,21 @@ describe('ng-easy-inject', function () {
   });
 
   describe('with a callback', function () {
-    var called;
+    var spy = sinon.stub();
 
-    beforeEach(easyInject('$http $q', function ($http, $q) {
-      called = [$http, $q];
-    }));
-    afterEach(function () { called = undefined; }); // eslint-disable-line no-undefined
+    beforeEach(easyInject('$http $q', spy));
+    afterEach(function () { spy.reset(); });
 
     it('invokes callback with injected arguments', function () {
-      assert.equal(called.length, 2);
       assert(this.$http.get);
       assert(this.$q.defer);
+      assert.equal(spy.callCount, 1);
+    });
+
+    it('invokes callback once per block', function () {
+      assert(this.$http.get);
+      assert(this.$q.defer);
+      assert.equal(spy.callCount, 1);
     });
   });
 

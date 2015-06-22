@@ -27,10 +27,11 @@ module.exports = function (toInject, callback) {
     angular.forEach(injected, function (item, index) {
       var name = fnToInject.$inject[index];
       testContext[name] = item;
-      if (callback) {
-        callback.apply(testContext, injected);
-      }
     });
+
+    if (callback) {
+      callback.apply(testContext, injected);
+    }
   }
 
   fnToInject.toString = function () {
