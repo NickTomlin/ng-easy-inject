@@ -51,5 +51,13 @@ describe('ng-easy-inject', function () {
         done();
       })();
     });
+
+    it('accepts an array of injectable names', function (done) {
+      easyInject(['$window', '$q'], function ($window, $q) {
+        assert($window.location);
+        assert($q.defer);
+        done();
+      })();
+    });
   });
 });

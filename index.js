@@ -1,10 +1,13 @@
 'use strict';
 
+var isArray = require('lodash.isarray');
+
 /**
  * Adds a list of injectable items to the test context.
  *
  * E.g.
  * beforeEach(easyInject('$http $q'));
+ * beforeEach(easyInject(['$http', '$q']));
  *
  * or
  *
@@ -12,12 +15,12 @@
  *   this.deferred = $q.defer();
  * }))
  *
- * @param {String} toInject - Space delimited list of items to inject
+ * @param {String|Array} toInject - Space delimited list or array of items to inject
  * @param {Function=} callback - Callback to be invoked injected items as params
  * @returns undefined
  */
 module.exports = function (toInject, callback) {
-  var injectables = toInject.split(' ');
+  var injectables = isArray(toInject) ? toInject : toInject.split(' ');
 
   // angular checks for fn.length, so we must provide a useless _ arg
   function fnToInject (_) { // eslint-disable-line no-unused-vars
