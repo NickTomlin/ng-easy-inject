@@ -1,6 +1,6 @@
 {
   "name": "ng-easy-inject",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Easily inject angular dependencies in mocha and jasmine tests",
   "main": "index.js",
   "repository": "nicktomlin/ng-easy-inject",
